@@ -1,0 +1,30 @@
+<template>
+    <div class="search-container">
+        <lightning-input 
+            label="Search" 
+            value={query} 
+            onchange={handleInputChange} 
+            placeholder="Enter search query">
+        </lightning-input>
+        <lightning-button 
+            label="Search" 
+            onclick={handleSearch} 
+            variant="brand">
+        </lightning-button>
+    </div>
+
+    <template if:true={error}>
+        <p class="error-message">{error}</p>
+    </template>
+
+    <template if:true={hasResults}>
+        <div class="results-container">
+            <template for:each={results} for:item="result">
+                <div key={result.id} class="result-item">
+                    <h3><a href={result.url} target="_blank">{result.title}</a></h3>
+                    <p>{result.snippet}</p>
+                </div>
+            </template>
+        </div>
+    </template>
+</template>
